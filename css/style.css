@@ -102,6 +102,8 @@ label:nth-child(even) td:nth-child(3) {
 	background: white;
 	
 	margin-right: .5em;
+	
+	position: relative;
 }
 
 .box input {
@@ -127,8 +129,7 @@ label:nth-child(even) td:nth-child(3) {
 	padding: .75em .9em;
 }
 
-.box input[type=button]:hover,
-.box input[type=button]:focus {
+.box input[type=button]:hover,{
 	background-color: #333333;
 	color: white;
 	cursor: pointer;
@@ -175,6 +176,7 @@ label:nth-child(even) td:nth-child(3) {
 
 .no-stretch {
 	flex-grow: 2;
+	max-width: 30%;
 }
 
 input.redoutline {
@@ -192,7 +194,13 @@ input.redoutline {
 	flex-grow: 3;
 }
 
+#btnRemove {
+	position: absolute;
+	right: 4em;
+}
+
 #provider-list {
 	max-height: 33em;
 	overflow: auto;
+	margin-bottom: 2em;
 }

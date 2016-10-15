@@ -28,7 +28,7 @@ function createobj(last, first, email, spc, prac){
 		practice : prac
 		};
 	
-	PRACTICES.push(newobj);
+	PRACTICES.unshift(newobj);
 	
 	addtolist(newobj);
 }
@@ -46,6 +46,37 @@ function addtolist(itm) {
 	newline += "<p>" + itm.practice + "</p></td></tr></table></label>";
 	
 	providerlist.innerHTML = newline + providerHTML;
+}
+
+function removed(){
+	let CHECKS = [].slice.call( document.querySelectorAll( "#provider-list input[type=checkbox]" ) );
+	
+	let allChecks = [];
+	
+	for (var i = 0; i < CHECKS.length; i++){
+		if (CHECKS[i].checked){
+			allChecks.push(i);
+		}
+	}
+	
+	if (allChecks.length > 0){
+		cleanlist(allChecks);
+	}
+		
+}
+
+function cleanlist(arr){
+	
+	for (var i = arr.length-1; i > -1; --i){
+		PRACTICES.splice(arr[i],1);
+	}
+	
+	document.getElementById("provider-list").innerHTML = "";
+	
+	for (var i = PRACTICES.length-1; i >= 0; --i){
+		addtolist(PRACTICES[i]);
+	}
+	
 }
 
 function submitted() {
