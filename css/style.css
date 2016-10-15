@@ -63,6 +63,7 @@ heading div {
 label table {
 	width: 95%;
 	border-collapse: collapse;
+	overflow: hidden;
 }
 
 td {
@@ -148,6 +149,10 @@ label:nth-child(even) td:nth-child(3) {
 	background-color: #f0f0f0;
 }
 
+.box label {
+	position: relative;
+}
+
 .boxcontain {
 	box-sizing: border-box;
 	
@@ -159,14 +164,35 @@ label:nth-child(even) td:nth-child(3) {
 
 }
 
+.hide {
+	display: none;
+}
+
 .marginize {
 	margin-top: 3em;
+	position: relative;
 }
 
 .no-stretch {
 	flex-grow: 2;
 }
 
+input.redoutline {
+	box-shadow: 0px 0px 8px red;
+}
+
+.redx {
+	height: 16px;
+	position: absolute;
+	left: -1.5em;
+	top: 2em;
+}
+
 .stretch {
 	flex-grow: 3;
+}
+
+#provider-list {
+	max-height: 33em;
+	overflow: auto;
 }

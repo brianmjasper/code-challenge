@@ -16,12 +16,16 @@ document.getElementById("provider-list").innerHTML = "";
 var PRACTICES = [];
 
 for (var i = 0; i < obj.length; i++){
+	createobj(obj[i].last_name, obj[i].first_name, obj[i].email_address, obj[i].specialty, obj[i].practice_name);
+}
+
+function createobj(last, first, email, spc, prac){
 	let newobj = {
-		lastname : obj[i].last_name,
-		firstname : obj[i].first_name,
-		email : obj[i].email_address,
-		specialty : obj[i].specialty,
-		practice : obj[i].practice_name
+		lastname : last,
+		firstname : first,
+		email : email,
+		specialty : spc,
+		practice : prac
 		};
 	
 	PRACTICES.push(newobj);
@@ -42,5 +46,55 @@ function addtolist(itm) {
 	newline += "<p>" + itm.practice + "</p></td></tr></table></label>";
 	
 	providerlist.innerHTML = newline + providerHTML;
+}
+
+function submitted() {
+	let newLast = document.getElementById("inLastName").value;
+	let newFirst = document.getElementById("inFirstName").value;
+	let newEmail = document.getElementById("inEmail").value;
+	let newSpecialty = document.getElementById("inSpecialty").value;
+	let newPractice = document.getElementById("inPractice").value;
+	
+	let completed = true;
+	
+	if (newLast === "undefined" || newLast === "") {
+		completed = false;
+		document.getElementById("redxLast").classList.remove("hide");
+		document.getElementById("inLastName").classList.add("redoutline");
+	} else {
+		document.getElementById("redxLast").classList.add("hide");
+		document.getElementById("inLastName").classList.remove("redoutline");
+	}
+	
+	if (newFirst === "undefined" || newFirst === "") {
+		completed = false;
+		document.getElementById("redxFirst").classList.remove("hide");
+		document.getElementById("inFirstName").classList.add("redoutline");
+	} else {
+		document.getElementById("redxFirst").classList.add("hide");
+		document.getElementById("inFirstName").classList.remove("redoutline");
+	}
+	
+	if (newEmail === "undefined" || newEmail === "") {
+		completed = false;
+		document.getElementById("redxEmail").classList.remove("hide");
+		document.getElementById("inEmail").classList.add("redoutline");
+	} else {
+		document.getElementById("redxEmail").classList.add("hide");
+		document.getElementById("inEmail").classList.remove("redoutline");
+	}
+	
+	if (newSpecialty === "undefined") {
+		newSpecialty = "";
+	}
+	
+	if (newPractice === "undefined") {
+		newPractice = "";
+	}
+	
+	if (completed) {
+		createobj(newLast, newFirst, newEmail, newSpecialty, newPractice);
+	}
+	
 }
 	
