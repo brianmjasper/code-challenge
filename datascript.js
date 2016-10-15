@@ -19,7 +19,7 @@ for (var i = 0; i < obj.length; i++){
 	createobj(obj[i].last_name, obj[i].first_name, obj[i].email_address, obj[i].specialty, obj[i].practice_name);
 }
 
-function createobj(last, first, email, spc, prac){
+function createobj(last, first, email, spc, prac){ // creates a new object out of our data
 	let newobj = {
 		lastname : last,
 		firstname : first,
@@ -34,31 +34,31 @@ function createobj(last, first, email, spc, prac){
 	addtolist(newobj);
 }
 
-function addtolist(itm) {
+function addtolist(itm) { // converts object into html table and checks to see if it should be added to the list
 	let providerlist = document.getElementById("provider-list");
 	let providerHTML = providerlist.innerHTML;
 	
 	let newline = "<label><table><tr><td><input type='checkbox' /></td><td><h2>" + itm.lastname + ", " + itm.firstname + "</h2>";
 	
-	newline += "<p>" + itm.email + "</p></td>";
+	newline += "<p id='itmemail'>" + itm.email + "</p></td>";
 	
 	newline += "<td><h3>" + itm.specialty + "</h3>";
 	
-	newline += "<p>" + itm.practice + "</p></td></tr></table></label>";
+	newline += "<p id='itmpractice'>" + itm.practice + "</p></td></tr></table></label>";
 	
-	providerlist.innerHTML = newline + providerHTML;
-	
-	checkforfilter();
+	if (checkforfilter(newline)){
+		providerlist.innerHTML = newline + providerHTML;
+	}
 }
 
-function removed(){
+function removed(){ // look for checked items
 	let CHECKS = [].slice.call( document.querySelectorAll( "#provider-list input[type=checkbox]" ) );
 	
 	let allChecks = [];
 	
 	for (var i = 0; i < CHECKS.length; i++){
 		if (CHECKS[i].checked){
-			allChecks.push(i);
+			allChecks.push(CHECKS[i].parentNode.parentNode.parentNode.parentNode.parentNode);
 		}
 	}
 	
@@ -68,21 +68,51 @@ function removed(){
 		
 }
 
-function cleanlist(arr){
+function cleanlist(arr){ // remove checked objects from array then add the remaining
+
+	let arg = arr[0].innerHTML;
 	
-	for (var i = arr.length-1; i > -1; --i){
-		PRACTICES.splice(arr[i],1);
+	var compobj = {
+		lastname : arg.substring( arg.indexOf("<h2>")+4, arg.indexOf(",") ),
+		firstname : arg.substring( arg.indexOf(", ")+2, arg.indexOf("</h2>") ),
+		email : arg.substring( arg.indexOf('<p id="itmemail">')+17, arg.indexOf("</p>") ),
+		specialty : arg.substring( arg.indexOf("<h3>")+4, arg.indexOf("</h3>") ),
+		practice : arg.substring( arg.indexOf('<p id="itmpractice">')+20, arg.indexOf( '</p></td></tr>' ) )
+		};
+		
+	let foundmatch = false;
+	let h = 0;
+	
+	while (!foundmatch || h < PRACTICES.length){
+		
+		if (compobj.lastname === PRACTICES[h].lastname &&
+			compobj.firstname === PRACTICES[h].firstname &&
+			compobj.email === PRACTICES[h].email &&
+			compobj.specialty === PRACTICES[h].specialty &&
+			compobj.practice === PRACTICES[h].practice){
+				foundmatch = true;
+				PRACTICES.splice(h,1);
+			} else {
+				++h
+			}
 	}
 	
-	document.getElementById("provider-list").innerHTML = "";
+	arr.splice(0,1);
 	
-	for (var i = PRACTICES.length-1; i >= 0; --i){
-		addtolist(PRACTICES[i]);
+	if (arr.length > 0){
+		cleanlist(arr);
+	} else {
+	
+		document.getElementById("provider-list").innerHTML = "";
+		
+		for (var i = PRACTICES.length-1; i >= 0; --i){
+			addtolist(PRACTICES[i]);
+		}
 	}
 	
 }
 
-function sorted() {
+function sorted() { // sort list
 	document.getElementById("provider-list").innerHTML = "";
 	
 	let val = document.getElementById("myselect").value;
@@ -217,22 +247,21 @@ function sorted() {
 	}
 }
 
-function checkforfilter(){
+function checkforfilter(str){ // if there is a valid query in search bar, determines if object should be added to list or not
 	let bar = document.getElementById("searchBar");
 	
-	let TABLES = [].slice.call( document.querySelectorAll( "#provider-list label" ) );
+	var result = true;
 	
-	for (var i = 0; i < TABLES.length; i++){
-		TABLES[i].classList.remove("hide");
-		if (bar.value.length > 2){
-			if (TABLES[i].innerHTML.toLowerCase().indexOf(bar.value.toLowerCase()) === -1){
-				TABLES[i].classList.add("hide");
-			}
+	if (bar.value.length > 2){
+		if (str.toLowerCase().indexOf(bar.value.toLowerCase()) === -1){
+			result = false;
 		}
-	}	
+	}
+	
+	return result;	
 }
 
-function submitted() {
+function submitted() { // create new object on submit
 	let newLast = document.getElementById("inLastName").value;
 	let newFirst = document.getElementById("inFirstName").value;
 	let newEmail = document.getElementById("inEmail").value;
