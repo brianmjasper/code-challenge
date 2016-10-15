@@ -85,7 +85,7 @@ function sorted() {
 	let val = document.getElementById("myselect").value;
 	
 	switch (val){
-		case "Name (A-Z)":
+		case "Last Name (A-Z)":
 			PRACTICES.sort(function(a,b){
 				let nameA = a.lastname.toLowerCase();
 				let nameB = b.lastname.toLowerCase();
@@ -97,10 +97,34 @@ function sorted() {
 			});
 			break;
 			
-		case "Name (Z-A)":
+		case "Last Name (Z-A)":
 			PRACTICES.sort(function(a,b){
 				let nameA = a.lastname.toLowerCase();
 				let nameB = b.lastname.toLowerCase();
+				if (nameA < nameB)
+					return 1
+				if (nameA > nameB)
+					return -1
+				return 0
+			});
+			break;
+			
+		case "First Name (A-Z)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.firstname.toLowerCase();
+				let nameB = b.firstname.toLowerCase();
+				if (nameA < nameB)
+					return -1
+				if (nameA > nameB)
+					return 1
+				return 0
+			});
+			break;
+			
+		case "First Name (Z-A)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.firstname.toLowerCase();
+				let nameB = b.firstname.toLowerCase();
 				if (nameA < nameB)
 					return 1
 				if (nameA > nameB)
