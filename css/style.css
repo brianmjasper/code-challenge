@@ -107,7 +107,7 @@ label:nth-child(even) td:nth-child(3) {
 }
 
 .box input {
-	display: block;
+	//display: block;
 	width: calc(100% - 1em);
 	font-size: 18px;
 	margin: 4px 0 2em;
@@ -217,4 +217,14 @@ input.redoutline {
 	max-height: 33em;
 	overflow: auto;
 	margin-bottom: 2em;
+}
+
+#searchBar {
+	position: absolute;
+	width: 10em;
+	
+	right: 14em;
+	top: 1.7em;
+	
+	margin: 0;
 }

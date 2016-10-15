@@ -30,6 +30,7 @@ function createobj(last, first, email, spc, prac){
 	
 	PRACTICES.unshift(newobj);
 	
+	document.getElementById("searchBar").value = "";
 	addtolist(newobj);
 }
 
@@ -46,6 +47,8 @@ function addtolist(itm) {
 	newline += "<p>" + itm.practice + "</p></td></tr></table></label>";
 	
 	providerlist.innerHTML = newline + providerHTML;
+	
+	checkforfilter();
 }
 
 function removed(){
@@ -204,11 +207,29 @@ function sorted() {
 				return 0
 			});
 			break;
+			
+		default:
+			break;
 	}
 	
 	for (var i = PRACTICES.length-1; i >= 0; --i){
 		addtolist(PRACTICES[i]);
 	}
+}
+
+function checkforfilter(){
+	let bar = document.getElementById("searchBar");
+	
+	let TABLES = [].slice.call( document.querySelectorAll( "#provider-list label" ) );
+	
+	for (var i = 0; i < TABLES.length; i++){
+		TABLES[i].classList.remove("hide");
+		if (bar.value.length > 2){
+			if (TABLES[i].innerHTML.toLowerCase().indexOf(bar.value.toLowerCase()) === -1){
+				TABLES[i].classList.add("hide");
+			}
+		}
+	}	
 }
 
 function submitted() {
