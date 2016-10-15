@@ -79,6 +79,114 @@ function cleanlist(arr){
 	
 }
 
+function sorted() {
+	document.getElementById("provider-list").innerHTML = "";
+	
+	let val = document.getElementById("myselect").value;
+	
+	switch (val){
+		case "Name (A-Z)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.lastname.toLowerCase();
+				let nameB = b.lastname.toLowerCase();
+				if (nameA < nameB)
+					return -1
+				if (nameA > nameB)
+					return 1
+				return 0
+			});
+			break;
+			
+		case "Name (Z-A)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.lastname.toLowerCase();
+				let nameB = b.lastname.toLowerCase();
+				if (nameA < nameB)
+					return 1
+				if (nameA > nameB)
+					return -1
+				return 0
+			});
+			break;
+			
+		case "Email (A-Z)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.email.toLowerCase();
+				let nameB = b.email.toLowerCase();
+				if (nameA < nameB)
+					return -1
+				if (nameA > nameB)
+					return 1
+				return 0
+			});
+			break;
+			
+		case "Email (Z-A)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.email.toLowerCase();
+				let nameB = b.email.toLowerCase();
+				if (nameA < nameB)
+					return 1
+				if (nameA > nameB)
+					return -1
+				return 0
+			});
+			break;
+			
+		case "Specialty (A-Z)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.specialty.toLowerCase();
+				let nameB = b.specialty.toLowerCase();
+				if (nameA < nameB)
+					return -1
+				if (nameA > nameB)
+					return 1
+				return 0
+			});
+			break;
+			
+		case "Specialty (Z-A)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.specialty.toLowerCase();
+				let nameB = b.specialty.toLowerCase();
+				if (nameA < nameB)
+					return 1
+				if (nameA > nameB)
+					return -1
+				return 0
+			});
+			break;
+		
+		case "Practice (A-Z)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.practice.toLowerCase();
+				let nameB = b.practice.toLowerCase();
+				if (nameA < nameB)
+					return -1
+				if (nameA > nameB)
+					return 1
+				return 0
+			});
+			break;
+			
+		case "Practice (Z-A)":
+			PRACTICES.sort(function(a,b){
+				let nameA = a.practice.toLowerCase();
+				let nameB = b.practice.toLowerCase();
+				if (nameA < nameB)
+					return 1
+				if (nameA > nameB)
+					return -1
+				return 0
+			});
+			break;
+	}
+	
+	for (var i = PRACTICES.length-1; i >= 0; --i){
+		addtolist(PRACTICES[i]);
+	}
+}
+
 function submitted() {
 	let newLast = document.getElementById("inLastName").value;
 	let newFirst = document.getElementById("inFirstName").value;

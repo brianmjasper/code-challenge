@@ -142,12 +142,20 @@ label:nth-child(even) td:nth-child(3) {
 	
 	width: auto;
 	
-	
 	border-radius: 50%;
 	
 	border: 1px solid #acacac;
 	
 	background-color: #f0f0f0;
+}
+
+.box select {
+	padding: .5em;
+	border-radius: 4px;
+	outline: none;
+	font-size: 16px;
+	
+	border-color: #484848;
 }
 
 .box label {
@@ -197,6 +205,12 @@ input.redoutline {
 #btnRemove {
 	position: absolute;
 	right: 4em;
+}
+
+#myselect {
+	position: absolute;
+	right: 5em;
+	top: 2em;
 }
 
 #provider-list {

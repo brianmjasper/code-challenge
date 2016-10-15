@@ -51,6 +51,19 @@
 
     <div class="box stretch">
         <h3>Provider List</h3>
+        
+        <select id="myselect" onChange="sorted()">
+        	<option>Sort By</option>
+            <option>Name (A-Z)</option>
+            <option>Name (Z-A)</option>
+            <option>Email (A-Z)</option>
+            <option>Email (Z-A)</option>
+            <option>Specialty (A-Z)</option>
+            <option>Specialty (Z-A)</option>
+            <option>Practice (A-Z)</option>
+            <option>Practice (Z-A)</option>
+        </select>
+        
         <div id="provider-list" class="marginize">
         	<label>
             <table><tr><td>
