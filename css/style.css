@@ -173,6 +173,10 @@ label:nth-child(even) td:nth-child(3) {
 
 }
 
+.formobile {
+	display: none;
+}
+
 .hide {
 	display: none;
 }
@@ -227,4 +231,98 @@ input.redoutline {
 	top: 1.7em;
 	
 	margin: 0;
+}
+
+@media screen and (max-width: 425px){
+	body {
+		padding: 1em 1em 0;
+		
+		font-size: 12px;
+	}
+	
+	h1 {
+		font-size: 28px;
+	}
+	
+	heading {
+				
+		margin: -2em 0 0 -2em;
+		
+		padding: 1em 3em 2em;
+	}
+	
+	label table {
+		width: 100%;
+	}
+	
+	td {
+		padding: .25em .5em 1em;;
+	}
+	
+	td p {
+		margin-top: .35em;
+	}
+	
+	td:nth-child(1) {
+		padding: .5em .5em 0 0;
+		width: 2em;
+	}
+	
+	.box {
+		display: block;
+	
+		padding: 1em 1em;
+		
+		margin-right: 0;
+	}
+	
+	.box input {
+		font-size: 16px;
+		margin: 2px 0 1em;
+	}
+	
+	.box input[type=button] {
+		font-size: 16px;
+		padding: .5em .65em;
+		
+		display: inline-block;
+	}
+	
+	.boxcontain {
+		display: block;
+	}
+	
+	.fordesktop {
+		display: none;
+	}
+	
+	.formobile {
+		display: block;
+		margin: 0 1em 1em;
+		color: blue;
+	}
+	
+	.no-stretch {
+		max-width: 100%;
+		margin-bottom: .5em;
+	}
+	
+	#provider-list {
+		height: auto;
+		max-height: 9999em;
+	}
+	
+	#searchBar,
+	#myselect,
+	#btnRemove {
+		position: relative;
+		right: 0;
+		top: 0;
+		
+		margin-top: .5em;
+	}
+	
+	.box select {
+		width: 11.15em;
+	}
 }

@@ -65,6 +65,7 @@ function removed(){ // look for checked items
 	if (allChecks.length > 0){
 		cleanlist(allChecks);
 	}
+
 		
 }
 
@@ -307,7 +308,25 @@ function submitted() { // create new object on submit
 	
 	if (completed) {
 		createobj(newLast, newFirst, newEmail, newSpecialty, newPractice);
+		document.getElementById("providerbtn").style.visibility = "visible";
+		document.getElementById("providerBox").classList.add("fordesktop");
+		
+		document.getElementById("inLastName").value = "";
+		document.getElementById("inFirstName").value = "";
+		document.getElementById("inEmail").value = "";
+		document.getElementById("inSpecialty").value = "";
+		document.getElementById("inPractice").value = "";
 	}
 	
+}
+
+function showCreate(){
+	document.getElementById("providerbtn").style.visibility = "hidden";
+	document.getElementById("providerBox").classList.remove("fordesktop");
+}
+
+function canceled(){
+	document.getElementById("providerbtn").style.visibility = "visible";
+	document.getElementById("providerBox").classList.add("fordesktop");
 }
 	
